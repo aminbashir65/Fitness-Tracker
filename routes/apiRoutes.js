@@ -24,7 +24,25 @@ module.exports = function(app) {
         res.json(err);
       });
   });
+  app.post("/api/workouts", (req, res) => {
+    db.Workout.create({})
+      .then(dbWorkout => {
+        res.json(dbWorkout);
+      })
+      .catch(err => {
+        res.json(err);
+      });
+  });
 
+  app.get("/api/workouts/range", function(req, res) {
+    db.Workout.find({}).limit(5)
+      .then(dbWorkout => {
+        res.json(dbWorkout);
+      })
+      .catch(err => {
+        res.json(err);
+      });
+  });
 
 
 };
